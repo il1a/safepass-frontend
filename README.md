@@ -1,29 +1,8 @@
-# webtech-frontend
+# SafePass
+Collaborative web tech project of Ilia Sokolovskiy & Nick Schmeiter.
 
-## Project setup
-```
-npm install
-```
+This is a frontend repository of SafePass project. You can find the main (backend) repository here:
+https://github.com/il1a/SafePass
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+WiSE 21/22, HTW Berlin.                                                                                                                                                                                                                                                        
+All rights reserved.
