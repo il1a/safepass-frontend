@@ -7,10 +7,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Login</a>
-            <a class="nav-link" href="#">Register</a>
-            <a class="nav-link" href="#">About us</a>
-            <a class="nav-link disabled">Home</a>
+            <router-link class="nav-link" aria-current="page" to="login">Login</router-link>
+            <router-link class="nav-link" to="registration">Register</router-link>
+            <router-link class="nav-link" to="/about">About us</router-link>
+            <router-link class="nav-link" to="/">Home</router-link>
           </div>
         </div>
       </div>
