@@ -1,3 +1,5 @@
+[![CI](https://github.com/il1a/safepass-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/il1a/safepass-frontend/actions/workflows/ci.yml)
+
 # SafePass
 Collaborative web tech project of Ilia Sokolovskiy & Nick Schmeiter.
 
