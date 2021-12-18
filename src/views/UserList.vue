@@ -32,33 +32,22 @@ export default {
   name: 'user-list',
   data () {
     return {
-      items: [
-        {
-          id: 1,
-          title: 'Amazon',
-          username: 'user1',
-          password: 'pass1',
-          url: 'amazon.com',
-          notes: 'Shopping'
-        },
-        {
-          id: 2,
-          title: 'Google',
-          username: 'user12',
-          password: 'pass12',
-          url: 'google.com',
-          notes: 'Work'
-        },
-        {
-          id: 3,
-          title: 'Netflix',
-          username: 'user123',
-          password: 'pass123',
-          url: 'netflix.com',
-          notes: 'Movies'
-        }
-      ]
+      items: []
     }
+  },
+  mounted () {
+    console.log('Page loaded')
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    }
+
+    fetch('http://localhost:8080//api/v1/items', requestOptions)
+      .then(response => response.json())
+      .then(result => result.forEach(item => {
+        this.items.push(item)
+      }))
+      .catch(error => console.log('error', error))
   }
 }
 </script>
