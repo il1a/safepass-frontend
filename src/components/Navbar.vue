@@ -11,6 +11,7 @@
             <router-link class="nav-link" to="registration">Register</router-link>
             <router-link class="nav-link" to="/about">About us</router-link>
             <router-link class="nav-link" to="/">Home</router-link>
+            <router-link class="nav-link" to="/user-list">Your Storage</router-link>
           </div>
         </div>
       </div>
