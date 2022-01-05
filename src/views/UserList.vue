@@ -1,35 +1,20 @@
 <template>
-  <div class="user-list"></div>
-  <div>
-    <h3>Your Storage</h3>
-    <table class="table table-dark table-striped">
-      <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Title</th>
-        <th scope="col">Username</th>
-        <th scope="col">Password</th>
-        <th scope="col">URL</th>
-        <th scope="col">Notes</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="col" v-for="item in items" :key="item.id">
-        <th scope="row"> {{ item.id }} </th>
-        <td>{{ item.title }}</td>
-        <td>{{ item.username }}</td>
-        <td>{{ item.password }}</td>
-        <td>{{ item.url }}</td>
-        <td>{{ item.notes }}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="user-list">
+    <item-table :items="this.items"></item-table>
   </div>
+  <item-create-form></item-create-form>
 </template>
 
 <script>
+import ItemTable from '@/components/ItemTable'
+import ItemCreateForm from '@/components/ItemCreateForm'
+
 export default {
   name: 'user-list',
+  components: {
+    ItemTable,
+    ItemCreateForm
+  },
   data () {
     return {
       items: []
