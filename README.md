@@ -20,7 +20,8 @@ Once you are in, you can navigate to several tabs available in the user scope.
 
 -And finally, at any point of time or whenever you are done surfing around your dashboard you can press <*Logout*> in order log out of your account.
 As soon as you log out, all of your data is saved and then being safely stored on our servers.
-Thanks for using our service!
+
+That's a wrap! Thanks for trying out our service!
 
 WiSE 21/22, HTW Berlin.                                                                                                                                                                                                                                                        
 All rights reserved.
