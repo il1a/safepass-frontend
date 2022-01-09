@@ -1,4 +1,4 @@
-<template>
+<template>no
   <div class="user-list">
     <item-table :items="this.items"></item-table>
   </div>
