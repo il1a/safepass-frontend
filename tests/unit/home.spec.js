@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils'
+import Home from '@/views/Home.vue'
 
-import HelloWorld from '@/components/HelloWorld.vue'
 describe('Testing Home.vue', () => {
   it('should tell if Welcome Message is there', () => {
     // when
-    const wrapper = mount(HelloWorld)
+    const wrapper = mount(Home)
 
     // then
-    expect(wrapper.text()).toMatch('')
+    expect(wrapper.text()).toMatch('Welcome to SafePass!')
   }
   )
 })
