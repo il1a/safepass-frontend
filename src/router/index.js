@@ -1,42 +1,50 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Login from '../views/Login.vue'
-import Registration from '../views/Registration.vue'
-import UserList from '@/views/UserList'
+import { LoginCallback, navigationGuard } from '@okta/okta-vue'
+import Home from '@/views/Home'
+import AboutView from '@/views/About'
+import LoginView from '@/views/Login'
+import ProfileView from '@/views/Profile'
+import UserListView from '@/views/UserList'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
     component: Home
   },
   {
     path: '/about',
-    name: 'About',
-    component: About
+    component: AboutView
   },
   {
     path: '/login',
-    name: 'Login',
-    component: Login
+    component: LoginView
   },
   {
-    path: '/registration',
-    name: 'Registration',
-    component: Registration
+    path: '/login/callback',
+    component: LoginCallback
+  },
+  {
+    path: '/profile',
+    component: ProfileView,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/user-list',
-    name: 'user-list',
-    component: UserList
+    component: UserListView,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   linkActiveClass: 'active',
-  routes
+  routes: routes
 })
+
+router.beforeEach(navigationGuard)
 
 export default router

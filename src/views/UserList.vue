@@ -1,5 +1,5 @@
 <template>
-  <div class="user-list">
+  <div id="user-list">
     <item-table :items="this.items"></item-table>
   </div>
   <item-create-form></item-create-form>
@@ -17,23 +17,43 @@ export default {
   },
   data () {
     return {
-      items: []
+      items: [],
+      claims: '',
+      accessToken: ''
     }
   },
-  mounted () {
-    const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/items'
-    console.log('Page loaded')
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
+  methods: {
+    loadItems () {
+      const baseUrl = process.env.VUE_APP_BACKEND_BASE_URL
+      const email = this.claims.email
+      const endpoint = baseUrl + '/api/v1/items' + '?owner=' + email
+      console.log('Page loaded')
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+        headers: {
+          Authorization: 'Bearer ' + this.accessToken
+        }
+      }
+      fetch(endpoint, requestOptions)
+        .then(response => response.json())
+        .then(result => result.forEach(item => {
+          this.items.push(item)
+        }))
+        .catch(error => console.log('error', error))
+    },
+    async setup () {
+      if (this.$root.authenticated) {
+        this.claims = await this.$auth.getUser()
+        this.accessToken = await this.$auth.getAccessToken()
+      }
     }
-
-    fetch(endpoint, requestOptions)
-      .then(response => response.json())
-      .then(result => result.forEach(item => {
-        this.items.push(item)
-      }))
-      .catch(error => console.log('error', error))
+  },
+  async created () {
+    await this.setup()
+    this.loadItems()
+  },
+  mounted () {
   }
 }
 </script>

@@ -13,6 +13,9 @@
       </tr>
       </thead>
       <tbody>
+      <tr v-if="items.length === 0">
+        <td colspan="6">You haven't saved any items yet</td>
+      </tr>
       <tr class="col" v-for="item in items" :key="item.id">
         <th scope="row"> {{ item.id }} </th>
         <td>{{ item.title }}</td>

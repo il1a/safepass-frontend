@@ -66,15 +66,20 @@ export default {
       username: '',
       password: '',
       url: '',
-      notes: ''
+      notes: '',
+      claims: '',
+      accessToken: ''
     }
   },
   methods: {
     createItem () {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/items'
+      const baseUrl = process.env.VUE_APP_BACKEND_BASE_URL
+      const endpoint = baseUrl + '/api/v1/items'
+      console.log('New Item Created')
 
       const myHeaders = new Headers()
       myHeaders.append('Content-Type', 'application/json')
+      myHeaders.append('Authorization', 'Bearer ' + this.accessToken)
 
       const raw = JSON.stringify({
         title: this.title,
@@ -82,7 +87,7 @@ export default {
         password: this.password,
         url: this.url,
         notes: this.notes,
-        holderId: 1
+        holder: this.claims.email
       })
 
       const requestOptions = {
@@ -93,8 +98,8 @@ export default {
       }
 
       fetch(endpoint, requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
+        .then(response => response.json())
+        .then(result => console.log('Success:', result))
         .catch(error => console.log('error', error))
     }
   }

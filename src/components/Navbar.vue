@@ -14,16 +14,19 @@
               <router-link class="nav-link" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" aria-current="page" to="login">Login</router-link>
+              <router-link class="nav-link" aria-current="page" to="/login" v-if="!authenticated">Login</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="registration">Register</router-link>
+              <router-link class="nav-link" to="/profile" v-if="authenticated">Profile</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/about">About us</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/user-list">Your Storage</router-link>
+              <router-link class="nav-link" to="/user-list" v-if="authenticated">Your Storage</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/" v-if="authenticated" v-on:click="logout()">Logout</router-link>
             </li>
           </ul>
         </div>
@@ -33,7 +36,26 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data: function () {
+    return { authenticated: false }
+  },
+  async created () {
+    await this.isAuthenticated()
+    this.$auth.authStateManager.subscribe(this.isAuthenticated)
+  },
+  watch: {
+    // Everytime the route changes, check for auth status
+    $route: 'isAuthenticated'
+  },
+  methods: {
+    async isAuthenticated () {
+      this.authenticated = await this.$auth.isAuthenticated()
+    },
+    async logout () {
+      await this.$auth.signOut()
+    }
+  }
 }
 </script>
 
